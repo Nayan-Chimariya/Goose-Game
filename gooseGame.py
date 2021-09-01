@@ -21,4 +21,13 @@ if start == "p":
     computer_roll = computer_dice_one + computer_dice_two
     print(f"\n🎲 🎲 You have rolled {computer_dice_one} and {computer_dice_two} making it {computer_roll}\n")
 
+  if user_roll > computer_roll:
+    first_to_go = "Human"
+    print("🏁 Human goes first\n")
+    
+  elif computer_roll > user_roll:
+    first_to_go = "Computer"
+    print("🏁 Computer goes first\n")
 
+  else:
+    print("Tied...\nRe-running the rolls...")
