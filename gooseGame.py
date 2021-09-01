@@ -1,0 +1,5 @@
+print("\n------------------------------------------------------")
+print("Welcome to the game of goose, Please select an option: ")
+print("------------------------------------------------------\n")
+print("Press 'p' to play")
+print("Press 'q' to quit\n")
