@@ -6,7 +6,7 @@ print("------------------------------------------------------\n")
 
 start = input("Press 'p' to play\nPress 'q' to quit: ").lower()
 
-if start == "p":
+def who_goes_first():
   doesUser_enter = input("\nHuman player press Enter: ")
   if doesUser_enter == "":
     user_dice_one = randint(1,6)
@@ -30,4 +30,12 @@ if start == "p":
     print("🏁 Computer goes first\n")
 
   else:
-    print("Tied...\nRe-running the rolls...")
+    print("🎌 Tied...\nRe-running the rolls...")
+    who_goes_first()
+
+if start == "p":
+  who_goes_first()
+else:
+  print("\nGood Game\n")
+  
+    
