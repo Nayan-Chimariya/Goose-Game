@@ -1,4 +1,3 @@
-from math import fabs
 from random import randint
 import time
 
@@ -6,6 +5,13 @@ first_to_go = ""
 second_to_go = ""
 user_position = 1
 computer_position = 1
+
+#game conditions:
+
+goose = [7,11,15]
+bridge = [6]
+maze = [13,20]
+skull = [23]
 
 print("\n------------------------------------------------------")
 print("Welcome to the game of goose, Please select an option: ")
@@ -91,6 +97,38 @@ def game_start():
         time.sleep(1)
         print(f"Human is now in position {user_position}\n")
 
+        if user_position in bridge:
+          print("🌫️ You have crossed a bridge")
+          print("Your position has been doubled")
+          user_position *= 2
+          print(f"\nMoving you to position {user_position} ...")
+          time.sleep(1)
+          print(f"Human is now in position {user_position}\n")
+          
+        elif user_position in goose:
+          print("🌫️ You have landed on goose")
+          print("mooving your piece by the same distance....")
+          user_position += user_roll
+          print(f"\nMoving you to position {user_position} ...")
+          time.sleep(1)
+          print(f"Human is now in position {user_position}\n")
+
+        elif user_position in maze:
+          print("🌫️ You entered a maze, You got lost")
+          print("mooving you back to previous position....")
+          user_position -= user_roll
+          print(f"\nMoving you to position {user_position} ...")
+          time.sleep(1)
+          print(f"Human is now in position {user_position}\n")
+        
+        elif user_position in skull:
+          print("🌫️ You placed your foot on a skull")
+          print("you died...restarting from origin...")
+          user_position = 1
+          print(f"\nMoving you to position {user_position} ...")
+          time.sleep(1)
+          print(f"Human is now in position {user_position}\n")
+
     else:
       computer_dice_one = randint(1,6)
       computer_dice_two = randint(1,6)
@@ -122,8 +160,39 @@ def game_start():
         print(f"\nMoving you to position {computer_position} ...")
         time.sleep(1)
         print(f"Computer is now in position {computer_position}\n")
-      
 
+        if computer_position in bridge:
+          print("🌫️ You have crossed a bridge")
+          print("Your position has been doubled")
+          computer_position *= 2
+          print(f"\nMoving you to position {computer_position} ...")
+          time.sleep(1)
+          print(f"Computer is now in position {computer_position}\n")
+          
+        elif computer_position in goose:
+          print("🌫️ You have landed on goose")
+          print("mooving your piece by the same distance....")
+          computer_position += computer_roll
+          print(f"\nMoving you to position {computer_position} ...")
+          time.sleep(1)
+          print(f"Computer is now in position {computer_position}\n")
+
+        elif computer_position in maze:
+          print("🌫️ You entered a maze, You got lost")
+          print("mooving you back to previous position....")
+          computer_position -= computer_roll
+          print(f"\nMoving you to position {computer_position} ...")
+          time.sleep(1)
+          print(f"Computer is now in position {computer_position}\n")
+        
+        elif computer_position in skull:
+          print("🌫️ You placed your foot on a skull")
+          print("you died...restarting from origin...")
+          computer_position = 1
+          print(f"\nMoving you to position {computer_position} ...")
+          time.sleep(1)
+          print(f"Human is now in position {computer_position}\n")
+  
   print(f"🟢 Its {second_to_go}'s turn\n")
   game_start = input("Press Enter: ")
   if game_start == "":
@@ -158,6 +227,38 @@ def game_start():
         print(f"\nMoving you to position {user_position} ...")
         time.sleep(1)
         print(f"Human is now in position {user_position}\n")
+
+        if user_position in bridge:
+          print("🌫️ You have crossed a bridge")
+          print("Your position has been doubled")
+          user_position *= 2
+          print(f"\nMoving you to position {user_position} ...")
+          time.sleep(1)
+          print(f"Human is now in position {user_position}\n")
+          
+        elif user_position in goose:
+          print("🌫️ You have landed on goose")
+          print("mooving your piece by the same distance....")
+          user_position += user_roll
+          print(f"\nMoving you to position {user_position} ...")
+          time.sleep(1)
+          print(f"Human is now in position {user_position}\n")
+
+        elif user_position in maze:
+          print("🌫️ You entered a maze, You got lost")
+          print("mooving you back to previous position....")
+          user_position -= user_roll
+          print(f"\nMoving you to position {user_position} ...")
+          time.sleep(1)
+          print(f"Human is now in position {user_position}\n")
+        
+        elif user_position in skull:
+          print("🌫️ You placed your foot on a skull")
+          print("you died...restarting from origin...")
+          user_position = 1
+          print(f"\nMoving you to position {user_position} ...")
+          time.sleep(1)
+          print(f"Human is now in position {user_position}\n")
       
     else:
       computer_dice_one = randint(1,6)
@@ -184,12 +285,37 @@ def game_start():
         exit(0)
 
       else:
-        print(f"\n🎲 🎲 You have rolled {computer_dice_one} and {computer_dice_two} making it {computer_roll}\n")
-        time.sleep(1.5)
+        if computer_position in bridge:
+          print("🌫️ You have crossed a bridge")
+          print("Your position has been doubled")
+          computer_position *= 2
+          print(f"\nMoving you to position {computer_position} ...")
+          time.sleep(1)
+          print(f"computer is now in position {computer_position}\n")
+          
+        elif computer_position in goose:
+          print("🌫️ You have landed on goose")
+          print("mooving your piece by the same distance....")
+          computer_position += computer_roll
+          print(f"\nMoving you to position {computer_position} ...")
+          time.sleep(1)
+          print(f"Computer is now in position {computer_position}\n")
 
-        print(f"\nMoving you to position {computer_position} ...")
-        time.sleep(1)
-        print(f"Computer is now in position {computer_position}\n")
+        elif computer_position in maze:
+          print("🌫️ You entered a maze, You got lost")
+          print("mooving you back to previous position....")
+          computer_position -= computer_roll
+          print(f"\nMoving you to position {computer_position} ...")
+          time.sleep(1)
+          print(f"Computer is now in position {computer_position}\n")
+        
+        elif computer_position in skull:
+          print("🌫️ You placed your foot on a skull")
+          print("you died...restarting from origin...")
+          computer_position = 1
+          print(f"\nMoving you to position {computer_position} ...")
+          time.sleep(1)
+          print(f"Computer is now in position {computer_position}\n")
       
 
 if start == "p":
@@ -225,5 +351,4 @@ if start == "p":
     
 else:
   print("\nGood Game\n")
-  
-    
+     
