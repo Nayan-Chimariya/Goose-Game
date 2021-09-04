@@ -6,12 +6,39 @@ second_to_go = ""
 user_position = 1
 computer_position = 1
 
-#game conditions:
-
+# game conditions:
 goose = [7,11,15]
 bridge = [6]
 maze = [13,20]
 skull = [23]
+
+# game board list:
+# goose = 7, 11, 15
+# bridge = 6
+# maze = 13, 20
+
+def map():
+  for i in range(1, 25):
+    if i == user_position[0]:
+        print(f"[$]", end=" ")
+    elif i == computer_position[0]:
+        print(f"[%]", end=" ")
+    elif i == (user_position[0] == computer_position[0]):
+        print(f"[$%]", end=" ")
+    elif i in goose:
+        print(f"+[{i}]", end=" ")
+    elif i in maze:
+        print(f"-[{i}]", end=" ")
+    elif i == bridge:
+        print(f"*[{i}]", end=" ")
+    elif i == 23:
+        print(f"![{i}]", end=" ")
+    elif i == 24:
+        print(f"<{i}>")
+    elif i == 12:
+        print(f"[{i}]\n")
+    else:
+        print(f"[{i}]", end=" ")
 
 print("\n------------------------------------------------------")
 print("Welcome to the game of goose, Please select an option: ")
@@ -73,10 +100,11 @@ def game_start():
       if user_position > 24:
         print(f"\n🎲 🎲 You have rolled {user_dice_one} and {user_dice_two} making it {user_roll}\n")
         time.sleep(0.5)
-        print("🛑 Exceeded board limit... you did not move")
+        print("🚫 Exceeded board limit... you did not move")
         user_position -= user_roll
         time.sleep(0.5)
         print(f"Your current position is {user_position}\n")
+
 
       elif user_position == 24:
         print(f"\n🎲 🎲 You have rolled {user_dice_one} and {user_dice_two} making it {user_roll}\n")
@@ -317,7 +345,6 @@ def game_start():
           time.sleep(1)
           print(f"Computer is now in position {computer_position}\n")
       
-
 if start == "p":
   who_goes_first()
   time.sleep(0.5)
@@ -326,11 +353,9 @@ if start == "p":
   print("-------------------\n")
   time.sleep(1)
 
-  board = "[$%] [2] [3] [4] [5] *[6] +[7] [8] [9] [10] +[11] [12]\n-[13] [14] +[15] [16] [17] [18] [19] -[20] [21] [22] ![23] <24>\n"
-
-  print("-------------")
-  print("📃 Game Rules")
-  print("-------------\n")
+  print("-------------------------")
+  print("📃 Game Info / Conditions")
+  print("-------------------------\n")
   time.sleep(0.5)
   print("$ = Human's Position\n"
         "% = computer's position\n"
@@ -342,7 +367,7 @@ if start == "p":
   time.sleep(5)
 
   print(".....Game board......\n")
-  print (board)
+  map()
   time.sleep(5)
   
   while True:
