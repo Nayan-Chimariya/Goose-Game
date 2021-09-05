@@ -1,14 +1,6 @@
 from random import randint
 import time
 
-first_to_go = ""
-second_to_go = ""
-user_position = 1
-computer_position = 1
-user_index = [1]
-computer_index = [1]
-
-
 # game conditions:
 goose = [7,11,15]
 bridge = [6]
@@ -19,6 +11,20 @@ skull = [23]
 # goose = 7, 11, 15
 # bridge = 6
 # maze = 13, 20
+
+first_to_go = ""
+second_to_go = ""
+user_position = 1
+computer_position = 1
+user_index = [1]
+computer_index = [1]
+
+def reset():
+  user_index.append(1)
+  user_index.pop(0)
+  computer_index.append(1)
+  computer_index.pop(0)
+
 
 def map():
   for i in range(1, 25):
@@ -46,12 +52,6 @@ def map():
       print(f"[{i}]\n")
     else:
       print(f"[{i}]", end=" ")
-
-print("\n------------------------------------------------------")
-print("Welcome to the game of goose, Please select an option: ")
-print("------------------------------------------------------\n")
-
-start = input("Press 'p' to play\nPress 'q' to quit: ").lower()
 
 def who_goes_first():
   global first_to_go
@@ -121,10 +121,12 @@ def game_start():
         print(f"Human is now in position {user_position}\n")
         user_index.append(user_position)
         user_index.pop(0)
-
+        
         print("🏆 Congrats human you have won")
         print("I guess there is hope for humatiy after all\n")
-        exit(0)
+        time.sleep(2)
+        reset()
+        main()
       
       else:
         print(f"\n🎲 🎲 You have rolled {user_dice_one} and {user_dice_two} making it {user_roll}\n")
@@ -213,7 +215,9 @@ def game_start():
 
         print("🏆 Congrats computer you have won")
         print("Now human termination is certain\n")
-        exit(0)
+        time.sleep(2)
+        reset()
+        main()
         
       else:
         print(f"\n🎲 🎲 You have rolled {computer_dice_one} and {computer_dice_two} making it {computer_roll}\n")
@@ -304,7 +308,9 @@ def game_start():
 
         print("🏆 Congrats human you have won")
         print("I guess there is hope for humatiy after all\n")
-        exit(0)
+        time.sleep(2)
+        reset()
+        main()
 
       else:
         print(f"\n🎲 🎲 You have rolled {user_dice_one} and {user_dice_two} making it {user_roll}\n")
@@ -393,7 +399,9 @@ def game_start():
 
         print("🏆 Congrats computer you have won")
         print("Now human termination is certain\n")
-        exit(0)
+        time.sleep(2)
+        reset()
+        main()
 
       else:
         print(f"\n🎲 🎲 You have rolled {computer_dice_one} and {computer_dice_two} making it {computer_roll}\n")
@@ -474,14 +482,12 @@ def game_start():
     time.sleep(1)
     print("\n")
 
-      
-if start == "p":
-  who_goes_first()
-  time.sleep(0.5)
-  print("-------------------")
-  print("🎮 Game begins 🎮")
-  print("-------------------\n")
-  time.sleep(1)
+def main():
+  print("\n----------------------------------------------------")
+  print("Welcome to the game of goose, Please select an option: ")
+  print("------------------------------------------------------\n")
+
+  start = input("Press 'p' to play\nPress 'q' to quit: ").lower()
 
   print("-------------------------")
   print("📃 Game Info / Conditions")
@@ -496,17 +502,27 @@ if start == "p":
   )
   time.sleep(5)
 
-  print("----------")
-  print("Game board")
-  print("----------\n")
-  map()
-  print("\n")
-  time.sleep(5)
-  
-  while True:
-    game_start()
-    time.sleep(1.5)
+  if start == "p":
+    who_goes_first()
+    time.sleep(0.5)
+    print("-------------------")
+    print("🎮 Game begins 🎮")
+    print("-------------------\n")
+    time.sleep(1)
+
+    print("----------")
+    print("Game board")
+    print("----------\n")
+    map()
+    print("\n")
+    time.sleep(5)
     
-else:
-  print("\nGood Game\n")
+    while True:
+      game_start()
+      time.sleep(1.5)
+      
+  else:
+    print("\nGood Game\n")
+
+main()
      
