@@ -5,6 +5,9 @@ first_to_go = ""
 second_to_go = ""
 user_position = 1
 computer_position = 1
+user_index = [0]
+computer_index = [0]
+
 
 # game conditions:
 goose = [7,11,15]
@@ -19,26 +22,28 @@ skull = [23]
 
 def map():
   for i in range(1, 25):
-    if i == user_position[0]:
-        print(f"[$]", end=" ")
-    elif i == computer_position[0]:
-        print(f"[%]", end=" ")
-    elif i == (user_position[0] == computer_position[0]):
-        print(f"[$%]", end=" ")
+    if i == user_index[0]:
+      print(f"[$]", end=" ")
+    elif i == computer_index[0]:
+      print(f"[%]", end=" ")
+    elif i == (user_index[0] == computer_index[0]):
+      print(f"[$%]", end=" ")
+    elif i == 12 and computer_index[0] == 12:
+      print(f"[%]\n")
     elif i in goose:
-        print(f"+[{i}]", end=" ")
+      print(f"+[{i}]", end=" ")
     elif i in maze:
-        print(f"-[{i}]", end=" ")
+      print(f"-[{i}]", end=" ")
     elif i == bridge:
-        print(f"*[{i}]", end=" ")
+      print(f"*[{i}]", end=" ")
     elif i == 23:
-        print(f"![{i}]", end=" ")
+      print(f"![{i}]", end=" ")
     elif i == 24:
-        print(f"<{i}>")
+      print(f"<{i}>")
     elif i == 12:
-        print(f"[{i}]\n")
+      print(f"[{i}]\n")
     else:
-        print(f"[{i}]", end=" ")
+      print(f"[{i}]", end=" ")
 
 print("\n------------------------------------------------------")
 print("Welcome to the game of goose, Please select an option: ")
@@ -104,14 +109,16 @@ def game_start():
         user_position -= user_roll
         time.sleep(0.5)
         print(f"Your current position is {user_position}\n")
-
-
+        user_index[0]
+        
       elif user_position == 24:
         print(f"\n🎲 🎲 You have rolled {user_dice_one} and {user_dice_two} making it {user_roll}\n")
         time.sleep(1.5)
         print(f"\nMoving you to position {user_position} ...")
         time.sleep(1)
         print(f"Human is now in position {user_position}\n")
+        user_index.append(user_position)
+        user_index.pop(0)
 
         print("🏆 Congrats human you have won")
         print("I guess there is hope for humatiy after all\n")
@@ -124,6 +131,8 @@ def game_start():
         print(f"\nMoving you to position {user_position} ...")
         time.sleep(1)
         print(f"Human is now in position {user_position}\n")
+        user_index.append(user_position)
+        user_index.pop(0)
 
         if user_position in bridge:
           print("🌫️ You have crossed a bridge")
@@ -132,6 +141,8 @@ def game_start():
           print(f"\nMoving you to position {user_position} ...")
           time.sleep(1)
           print(f"Human is now in position {user_position}\n")
+          user_index.append(user_position)
+          user_index.pop(0)
           
         elif user_position in goose:
           print("🌫️ You have landed on goose")
@@ -140,6 +151,8 @@ def game_start():
           print(f"\nMoving you to position {user_position} ...")
           time.sleep(1)
           print(f"Human is now in position {user_position}\n")
+          user_index.append(user_position)
+          user_index.pop(0)
 
         elif user_position in maze:
           print("🌫️ You entered a maze, You got lost")
@@ -148,6 +161,8 @@ def game_start():
           print(f"\nMoving you to position {user_position} ...")
           time.sleep(1)
           print(f"Human is now in position {user_position}\n")
+          user_index.append(user_position)
+          user_index.pop(0)
         
         elif user_position in skull:
           print("🌫️ You placed your foot on a skull")
@@ -156,6 +171,11 @@ def game_start():
           print(f"\nMoving you to position {user_position} ...")
           time.sleep(1)
           print(f"Human is now in position {user_position}\n")
+          user_index.append(user_position)
+          user_index.pop(0)
+      map()
+      time.sleep(1)
+      print("\n")
 
     else:
       computer_dice_one = randint(1,6)
@@ -165,10 +185,11 @@ def game_start():
       if computer_position > 24:
         print(f"\n🎲 🎲 You have rolled {computer_dice_one} and {computer_dice_two} making it {computer_roll}\n")
         time.sleep(0.5)
-        print("🛑 Exceeded board limit... you did not move")
+        print("🚫 Exceeded board limit... you did not move")
         computer_position -= computer_roll
         time.sleep(0.5)
         print(f"Your current position is {computer_position}\n")
+        computer_index[0]
 
       elif computer_position == 24:
         print(f"\n🎲 🎲 You have rolled {computer_dice_one} and {computer_dice_two} making it {computer_roll}\n")
@@ -176,6 +197,8 @@ def game_start():
         print(f"\nMoving you to position {computer_position} ...")
         time.sleep(1)
         print(f"Computer is now in position {computer_position}\n")
+        computer_index.append(computer_position)
+        computer_index.pop(0)
 
         print("🏆 Congrats computer you have won")
         print("Now human termination is certain\n")
@@ -188,6 +211,8 @@ def game_start():
         print(f"\nMoving you to position {computer_position} ...")
         time.sleep(1)
         print(f"Computer is now in position {computer_position}\n")
+        computer_index.append(computer_position)
+        computer_index.pop(0)
 
         if computer_position in bridge:
           print("🌫️ You have crossed a bridge")
@@ -196,6 +221,8 @@ def game_start():
           print(f"\nMoving you to position {computer_position} ...")
           time.sleep(1)
           print(f"Computer is now in position {computer_position}\n")
+          computer_index.append(computer_position)
+          computer_index.pop(0)
           
         elif computer_position in goose:
           print("🌫️ You have landed on goose")
@@ -204,6 +231,8 @@ def game_start():
           print(f"\nMoving you to position {computer_position} ...")
           time.sleep(1)
           print(f"Computer is now in position {computer_position}\n")
+          computer_index.append(computer_position)
+          computer_index.pop(0)
 
         elif computer_position in maze:
           print("🌫️ You entered a maze, You got lost")
@@ -212,6 +241,8 @@ def game_start():
           print(f"\nMoving you to position {computer_position} ...")
           time.sleep(1)
           print(f"Computer is now in position {computer_position}\n")
+          computer_index.append(computer_position)
+          computer_index.pop(0)
         
         elif computer_position in skull:
           print("🌫️ You placed your foot on a skull")
@@ -220,6 +251,10 @@ def game_start():
           print(f"\nMoving you to position {computer_position} ...")
           time.sleep(1)
           print(f"Human is now in position {computer_position}\n")
+          computer_index.append(computer_position)
+          computer_index.pop(0)
+      map()
+      print("\n")
   
   print(f"🟢 Its {second_to_go}'s turn\n")
   game_start = input("Press Enter: ")
@@ -232,10 +267,11 @@ def game_start():
       if user_position > 24:
         print(f"\n🎲 🎲 You have rolled {user_dice_one} and {user_dice_two} making it {user_roll}\n")
         time.sleep(0.5)
-        print("🛑 Exceeded board limit... you did not move")
+        print("🚫 Exceeded board limit... you did not move")
         user_position -=  user_roll
         time.sleep(0.5)
         print(f"Your current position is {user_position}\n")
+        user_index[0]
 
       elif user_position == 24:
         print(f"\n🎲 🎲 You have rolled {user_dice_one} and {user_dice_two} making it {user_roll}\n")
@@ -243,6 +279,8 @@ def game_start():
         print(f"\nMoving you to position {user_position} ...")
         time.sleep(1)
         print(f"Human is now in position {user_position}\n")
+        user_index.append(user_position)
+        user_index.pop(0)
 
         print("🏆 Congrats human you have won")
         print("I guess there is hope for humatiy after all\n")
@@ -255,6 +293,8 @@ def game_start():
         print(f"\nMoving you to position {user_position} ...")
         time.sleep(1)
         print(f"Human is now in position {user_position}\n")
+        user_index.append(user_position)
+        user_index.pop(0)
 
         if user_position in bridge:
           print("🌫️ You have crossed a bridge")
@@ -263,6 +303,8 @@ def game_start():
           print(f"\nMoving you to position {user_position} ...")
           time.sleep(1)
           print(f"Human is now in position {user_position}\n")
+          user_index.append(user_position)
+          user_index.pop(0)
           
         elif user_position in goose:
           print("🌫️ You have landed on goose")
@@ -271,6 +313,8 @@ def game_start():
           print(f"\nMoving you to position {user_position} ...")
           time.sleep(1)
           print(f"Human is now in position {user_position}\n")
+          user_index.append(user_position)
+          user_index.pop(0)
 
         elif user_position in maze:
           print("🌫️ You entered a maze, You got lost")
@@ -279,6 +323,8 @@ def game_start():
           print(f"\nMoving you to position {user_position} ...")
           time.sleep(1)
           print(f"Human is now in position {user_position}\n")
+          user_index.append(user_position)
+          user_index.pop(0)
         
         elif user_position in skull:
           print("🌫️ You placed your foot on a skull")
@@ -287,6 +333,11 @@ def game_start():
           print(f"\nMoving you to position {user_position} ...")
           time.sleep(1)
           print(f"Human is now in position {user_position}\n")
+          user_index.append(user_position)
+          user_index.pop(0)
+      map() 
+      time.sleep(1)
+      print("\n")
       
     else:
       computer_dice_one = randint(1,6)
@@ -296,10 +347,11 @@ def game_start():
       if computer_position > 24:
         print(f"\n🎲 🎲 You have rolled {computer_dice_one} and {computer_dice_two} making it {computer_roll}\n")
         time.sleep(0.5)
-        print("🛑 Exceeded board limit... you did not move")
+        print("🚫 Exceeded board limit... you did not move")
         computer_position -= computer_roll
         time.sleep(0.5)
         print(f"Your current position is {computer_position}\n")
+        user_index[0]
       
       elif computer_position == 24:
         print(f"\n🎲 🎲 You have rolled {computer_dice_one} and {computer_dice_two} making it {computer_roll}\n")
@@ -307,6 +359,8 @@ def game_start():
         print(f"\nMoving you to position {computer_position} ...")
         time.sleep(1)
         print(f"Computer is now in position {computer_position}\n")
+        computer_index.append(computer_position)
+        computer_index.pop(0)
 
         print("🏆 Congrats computer you have won")
         print("Now human termination is certain\n")
@@ -320,6 +374,8 @@ def game_start():
           print(f"\nMoving you to position {computer_position} ...")
           time.sleep(1)
           print(f"computer is now in position {computer_position}\n")
+          computer_index.append(computer_position)
+          computer_index.pop(0)
           
         elif computer_position in goose:
           print("🌫️ You have landed on goose")
@@ -328,6 +384,8 @@ def game_start():
           print(f"\nMoving you to position {computer_position} ...")
           time.sleep(1)
           print(f"Computer is now in position {computer_position}\n")
+          computer_index.append(computer_position)
+          computer_index.pop(0)
 
         elif computer_position in maze:
           print("🌫️ You entered a maze, You got lost")
@@ -336,6 +394,8 @@ def game_start():
           print(f"\nMoving you to position {computer_position} ...")
           time.sleep(1)
           print(f"Computer is now in position {computer_position}\n")
+          computer_index.append(computer_position)
+          computer_index.pop(0)
         
         elif computer_position in skull:
           print("🌫️ You placed your foot on a skull")
@@ -344,6 +404,11 @@ def game_start():
           print(f"\nMoving you to position {computer_position} ...")
           time.sleep(1)
           print(f"Computer is now in position {computer_position}\n")
+          computer_index.append(computer_position)
+          computer_index.pop(0)
+      map()
+      time.sleep(1)
+      print("\n")
       
 if start == "p":
   who_goes_first()
@@ -366,8 +431,11 @@ if start == "p":
   )
   time.sleep(5)
 
-  print(".....Game board......\n")
+  print("----------")
+  print("Game board")
+  print("----------\n")
   map()
+  print("\n")
   time.sleep(5)
   
   while True:
