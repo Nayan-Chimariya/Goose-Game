@@ -489,19 +489,6 @@ def main():
 
   start = input("Press 'p' to play\nPress 'q' to quit: ").lower()
 
-  print("-------------------------")
-  print("📃 Game Info / Conditions")
-  print("-------------------------\n")
-  time.sleep(0.5)
-  print("$ = Human's Position\n"
-        "% = computer's position\n"
-        "+ = goose: move your piece again by the same distance\n"
-        "* = bridge: double the value\n"
-        "- = maze: go back to your previous space\n"
-        "! = skull: return to the beginning\n"
-  )
-  time.sleep(5)
-
   if start == "p":
     who_goes_first()
     time.sleep(0.5)
@@ -509,6 +496,19 @@ def main():
     print("🎮 Game begins 🎮")
     print("-------------------\n")
     time.sleep(1)
+
+    print("-------------------------")
+    print("📃 Game Info / Conditions")
+    print("-------------------------\n")
+    time.sleep(0.5)
+    print("$ = Human's Position\n"
+          "% = computer's position\n"
+          "+ = goose: move your piece again by the same distance\n"
+          "* = bridge: double the value\n"
+          "- = maze: go back to your previous space\n"
+          "! = skull: return to the beginning\n"
+    )
+    time.sleep(5)
 
     print("----------")
     print("Game board")
@@ -522,7 +522,8 @@ def main():
       time.sleep(1.5)
       
   else:
-    print("\nGood Game\n")
+    print("\nGood Game you suck lol\n")
+    quit()
 
 main()
      
